@@ -4,17 +4,16 @@ import { Button, FeedBackWrapper } from './Feedback.styled';
 export const Feedback = ({ options, leaveFeedback }) => {
   return (
     <FeedBackWrapper>
-      {options &&
-        options.map(option => (
-          <Button
-            type="button"
-            key={option}
-            name={option}
-            onClick={leaveFeedback}
-          >
-            {option}
-          </Button>
-        ))}
+      {options.map(option => (
+        <Button
+          type="button"
+          key={option}
+          name={option}
+          onClick={() => leaveFeedback(option)}
+        >
+          {option}
+        </Button>
+      ))}
     </FeedBackWrapper>
   );
 };

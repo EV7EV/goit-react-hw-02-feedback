@@ -16,10 +16,9 @@ export class App extends Component {
 
   // Функція буде передаватися в фідбек і змінювати стейт
 
-  leaveFeedback = ev => {
-    const { name } = ev.target;
+  leaveFeedback = option => {
     this.setState(prevState => ({
-      [name]: prevState[name] + 1,
+      [option]: prevState[option] + 1,
     }));
   };
   // Метод який рахує стейт
@@ -42,6 +41,8 @@ export class App extends Component {
   };
 
   render() {
+    const total = this.countTotalFeedback();
+    const percentage = this.countPositiveFeedbackPercentage();
     const { good, neutral, bad } = this.state;
     return (
       <>
@@ -52,15 +53,15 @@ export class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          {this.countTotalFeedback() === 0 ? (
+          {total === 0 ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.countTotalFeedback()}
-              positivePercentage={this.countPositiveFeedbackPercentage()}
+              total={total}
+              positivePercentage={percentage}
             />
           )}
         </Section>
